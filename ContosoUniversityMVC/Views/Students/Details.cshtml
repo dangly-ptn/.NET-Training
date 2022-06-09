@@ -1,0 +1,50 @@
+﻿@model ContosoUniversityMVC.Models.Student
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstMidName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LastName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EnrollmentDate)
+			</th>
+			<th>Course Title</th>
+			<th>Grade</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				@Html.DisplayFor(student => student.FirstMidName)
+			</td>
+			<td>
+				@Html.DisplayFor(student => student.LastName)
+			</td>
+			<td>
+				@Html.DisplayFor(student => student.EnrollmentDate)
+			</td>
+			@foreach (var item in Model.Enrollments)
+			{
+				<td>
+					@Html.DisplayFor(modelItem => item.Course.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Grade)
+				</td>
+			}
+			<td>
+				<a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+				<a asp-action="Index">Return</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
